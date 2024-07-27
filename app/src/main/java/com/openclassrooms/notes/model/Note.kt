@@ -1,6 +1,6 @@
 package com.openclassrooms.notes.model
 
-class Note(
+data class Note(
     val title: String,
     val body: String
 )
