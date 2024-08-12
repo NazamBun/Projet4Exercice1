@@ -29,7 +29,7 @@ class LocalNotesApiServiceTest {
     fun testAddNote() {
         val notes = notesApiService.getAllNotes()
         val initialSize = notes.size
-        val note = notesApiService.addNote(
+        notesApiService.addNote(
             Note(
                 title = "Title",
                 body = "Body"
@@ -44,8 +44,15 @@ class LocalNotesApiServiceTest {
 
     @Test
     fun collectNotes() {
+        val newNote = Note(
+            title = "Title",
+            body = "Body"
+        )
+        notesApiService.addNote(newNote)
         val notes = notesApiService.getAllNotes()
         assert(notes.isNotEmpty())
-        assertEquals(10, notes.size)
+        assertEquals(11, notes.size)
+        assertEquals(newNote, notes.last())
+        assertEquals("Title", notes[10].title)
     }
 }
